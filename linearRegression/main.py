@@ -3,23 +3,23 @@ from sklearn.datasets import load_iris
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-# Загружаем датасет ирисов: признаки и названия
+# Загружаем датасет: признаки и названия
 iris = load_iris()
 X = iris.data
 y = iris.target
 feature_names = iris.feature_names
 
-# Перебор всех пар признаков для построения линейной регрессии
+# Перебор всех признаков для построения линейной регрессии
 best_r2 = 0
 best_i, best_j = 0, 0
 best_reg = None
 
-for j in range(4):  # Целевой признак
-    for i in range(4):  # Признак-модель
+for j in range(4):  
+    for i in range(4):  
         if i != j:
             reg = LinearRegression()
-            reg.fit(X[:, i].reshape(-1, 1), X[:, j])  # Обучаем: i -> j
-            r2 = reg.score(X[:, i].reshape(-1, 1), X[:, j])  # Оцениваем R^2
+            reg.fit(X[:, i].reshape(-1, 1), X[:, j])  
+            r2 = reg.score(X[:, i].reshape(-1, 1), X[:, j])  
             if r2 > best_r2:
                 best_r2 = r2
                 best_i, best_j = i, j
